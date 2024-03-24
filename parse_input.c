@@ -6,7 +6,7 @@
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 10:11:11 by beredzhe          #+#    #+#             */
-/*   Updated: 2024/03/21 13:04:07 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/03/24 16:37:25 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ static void	ft_check_content(t_data *data)
 	}
 	if (player != 1)
 		ft_map_error("Error\nonly valid map if one player is contained\n");
-	if (exit == 0)
+	if (exit != 1)
 		ft_map_error("Error\nonly valid map if at\
 			least one exit is contained\n");
 	if (data->map->coins == 0)

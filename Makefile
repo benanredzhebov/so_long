@@ -6,15 +6,15 @@
 #    By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/17 10:11:36 by beredzhe          #+#    #+#              #
-#    Updated: 2024/03/23 09:45:32 by beredzhe         ###   ########.fr        #
+#    Updated: 2024/03/24 10:21:05 by beredzhe         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = so_long
 
-CC = cc
+CC = gcc
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 
 MLX_PATH = mlx/
 

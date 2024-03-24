@@ -6,7 +6,7 @@
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 10:09:11 by beredzhe          #+#    #+#             */
-/*   Updated: 2024/03/20 11:54:31 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/03/24 16:22:54 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,5 +82,6 @@ int		ft_mouse_hook(int mousecode, t_data *data);
 void	ft_move(t_data *data, char position, int direction);
 int		ft_exit(t_data *data);
 void	ft_init(t_data *data, t_map *map);
+int		ft_check_coin(char **map, int width, int height, int x, int y);
 
 #endif

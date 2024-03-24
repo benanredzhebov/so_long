@@ -6,7 +6,7 @@
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 10:11:27 by beredzhe          #+#    #+#             */
-/*   Updated: 2024/03/20 11:50:54 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/03/24 16:33:57 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,23 @@ void	ft_create_map(t_data *data)
 			data->map->x = 0;
 		}
 	}
+}
+
+int	ft_check_coin(char **map, int width, int height, int x, int y)
+{
+	int	c;
+
+	c = 0;
+	if (y < 0 || y >= height || x < 0 || x >= width)
+		return (0);
+	if (map[y][x] == 'C')
+		c++;
+	if (map[y][x] == 'v' || map[y][x] == '1')
+		return (0);
+	map[y][x] = 'v';
+	c += ft_check_coin(map, width, height, x, y + 1);
+	c += ft_check_coin(map, width, height, x, y - 1);
+	c += ft_check_coin(map, width, height, x - 1, y);
+	c += ft_check_coin(map, width, height, x + 1, y);
+	return (c);
 }
