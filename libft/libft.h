@@ -6,7 +6,7 @@
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 10:29:17 by beredzhe          #+#    #+#             */
-/*   Updated: 2024/03/20 15:04:35 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/03/27 09:16:03 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,6 @@
 # include <stdio.h>
 # include <ctype.h>
 # include <stdarg.h>
-
-typedef struct s_list
-{
-	void			*content;
-	struct s_list	*next;
-}					t_list;
 
 void	*ft_calloc(size_t nelem, size_t elsize);
 int		ft_atoi(const char *str);

@@ -6,7 +6,7 @@
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 10:11:19 by beredzhe          #+#    #+#             */
-/*   Updated: 2024/03/24 16:35:04 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/03/27 10:28:28 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,18 +48,8 @@ static void	ft_collect(t_data *data, char pos, int dir)
 	ft_player_move(data, pos, dir);
 }
 
-void	ft_move(t_data *data, char pos, int dir)
-/* will check if a move is valid and move the player if valid */
+void	ft_move_help(t_data *data, char pos, int dir)
 {
-	mlx_put_image_to_window(data->mlx, data->win, data->img->background,
-		(data->p_x * IMG_W), (data->p_y * IMG_H));
-	if ((pos == 'y' && data->map->map[data->p_y + 1 * dir][data->p_x] == '1') ||
-	(pos == 'x' && data->map->map[data->p_y][data->p_x + 1 * dir] == '1'))
-	{
-		ft_player_move(data, pos, dir);
-		mlx_do_sync(data->mlx);
-		return ;
-	}
 	if (pos == 'y' && data->map->map[data->p_y + 1 * dir][data->p_x] != '1'
 		&& (data->map->map[data->p_y + 1 * dir][data->p_x] != 'E'
 		|| data->collected == data->map->coins))
@@ -68,7 +58,7 @@ void	ft_move(t_data *data, char pos, int dir)
 		&& (data->map->map[data->p_y][data->p_x + 1 * dir] != 'E'
 		|| data->collected == data->map->coins))
 		data->p_x = data->p_x + 1 * dir;
-	else if (pos == 'y' && data->map->map[data->p_y + 1 * dir][data->p_x] == 'E'
+	else if (pos == 'y' && data->map->map[data->p_y + 1 * dir][data->p_x] == 'E' 
 		&& data->collected != data->map->coins)
 		ft_printf("Collect all coins before leaving\n");
 	else if (pos == 'x' && data->map->map[data->p_y][data->p_x + 1 * dir] == 'E'
@@ -77,6 +67,24 @@ void	ft_move(t_data *data, char pos, int dir)
 	ft_player_move(data, pos, dir);
 	if (data->map->map[data->p_y][data->p_x] == 'C')
 		ft_collect(data, pos, dir);
+}
+
+void	ft_move(t_data *data, char pos, int dir)
+/* will check if a move is valid and move the player if valid */
+{
+	mlx_put_image_to_window(data->mlx, data->win, data->img->background,
+		(data->p_x * IMG_W), (data->p_y * IMG_H));
+	if ((pos == 'y' && data->map->map[data->p_y + 1 * dir][data->p_x] == '1') ||
+		(pos == 'x' && data->map->map[data->p_y][data->p_x + 1 * dir] == '1') ||
+		(pos == 'y' && data->map->map[data->p_y + 1 * dir][data->p_x] == 'E') ||
+		(pos == 'x' && data->map->map[data->p_y][data->p_x + 1 * dir] == 'E' &&
+		data->collected != data->map->coins))
+	{
+		ft_player_move(data, pos, dir);
+		mlx_do_sync(data->mlx);
+		return ;
+	}
+	ft_move_help(data, pos, dir);
 	mlx_do_sync(data->mlx);
 	ft_printf("You moved %d times.\n", ++data->counter);
 }

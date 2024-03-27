@@ -6,13 +6,13 @@
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 10:11:11 by beredzhe          #+#    #+#             */
-/*   Updated: 2024/03/24 16:37:25 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/03/27 09:41:07 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static void	ft_map_error(char *error_msg)
+void	ft_map_error(char *error_msg)
 /* will print the error message end exit the process */
 {
 	ft_printf("%s", error_msg);
@@ -29,20 +29,20 @@ static void	ft_check_borders(t_data *data)
 	while (y < (data->size_y / IMG_H))
 	{
 		if ((int)ft_strlen(data->map->map[y]) != data->size_x / IMG_W)
-			ft_map_error("Error\nmap has to be rectangular\n");
+			ft_map_error("Error: Map has to be rectangular\n");
 		x = 0;
 		while (x < (data->size_x / IMG_W))
 		{
 			if (data->map->map[y][x] != '0' && data->map->map[y][x] != '1' &&
 				data->map->map[y][x] != 'C' && data->map->map[y][x] != 'P' &&
 				data->map->map[y][x] != 'E')
-				ft_map_error("Error\nfor map '0','1','C','P','E' are valid\n");
+				ft_map_error("Error: Unknown character in the map.\n");
 			else if ((y == 0 || x == 0) && data->map->map[y][x] != '1')
-				ft_map_error("Error\nmap has to be surrounded by walls\n");
+				ft_map_error("Error: The map has to be surrounded by walls\n");
 			else if ((y == (data->size_y / IMG_H - 1)
 					|| x == (data->size_x / IMG_W - 1))
 				&& data->map->map[y][x] != '1')
-				ft_map_error("Error\nmap has to be surrounded by walls\n");
+				ft_map_error("Error: The map has to be surrounded by walls\n");
 			x++;
 		}
 		y++;
@@ -52,29 +52,28 @@ static void	ft_check_borders(t_data *data)
 static void	ft_check_content(t_data *data)
 /* will check the contents of the map if valid */
 {
-	int	y;
+	int	row;
 	int	exit;
 	int	player;
 
 	exit = 0;
 	player = 0;
 	data->map->coins = 0;
-	y = 0;
-	while (data->map->map && data->map->map[y])
+	row = 0;
+	while (data->map->map && data->map->map[row])
 	{
-		exit += ft_count_c(data->map->map[y], 'E');
-		player += ft_count_c(data->map->map[y], 'P');
-		data->map->coins += ft_count_c(data->map->map[y], 'C');
-		y++;
+		exit += ft_count_c(data->map->map[row], 'E');
+		player += ft_p_position(data, data->map->map[row], row);
+		data->map->coins += ft_count_c(data->map->map[row], 'C');
+		row++;
 	}
 	if (player != 1)
-		ft_map_error("Error\nonly valid map if one player is contained\n");
+		ft_map_error("Error: Only valid map. Required only one player\n");
 	if (exit != 1)
-		ft_map_error("Error\nonly valid map if at\
-			least one exit is contained\n");
+		ft_map_error("Error: Only valid map. Required only one exit\n");
 	if (data->map->coins == 0)
-		ft_map_error("Error\nonly valid map if at\
-			least one coin is contained\n");
+		ft_map_error("Error: Only valid map. Required at\
+			least one coin\n");
 }
 
 static void	ft_input_error(int argc)
@@ -114,4 +113,5 @@ void	ft_parse_input(t_data *data, char **argv, int argc)
 	}
 	ft_check_content(data);
 	ft_check_borders(data);
+	can_access_coins(data);
 }

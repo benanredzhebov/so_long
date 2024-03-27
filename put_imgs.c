@@ -6,7 +6,7 @@
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 10:11:02 by beredzhe          #+#    #+#             */
-/*   Updated: 2024/03/24 16:38:34 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/03/27 09:23:50 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,4 +51,27 @@ void	ft_put_player(t_data *data)
 	data->p_y = data->map->y;
 	mlx_put_image_to_window(data->mlx, data->win, data->img->player_right,
 		(data->p_x * IMG_W), (data->p_y * IMG_H));
+}
+
+int	ft_p_position(t_data *data, char *s, int row)
+/* will count appearances of c inside s and return them as integer */
+{
+	int	col;
+	int	x;
+
+	col = 0;
+	x = 0;
+	if (!s)
+		return (-1);
+	while (s && s[col])
+	{
+		if (s[col] == 'P')
+		{
+			data->pos[0] = row;
+			data->pos[1] = col;
+			x++;
+		}
+		col++;
+	}
+	return (x);
 }

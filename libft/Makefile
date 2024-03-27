@@ -6,7 +6,7 @@
 #    By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/17 12:17:13 by beredzhe          #+#    #+#              #
-#    Updated: 2024/03/20 11:48:08 by beredzhe         ###   ########.fr        #
+#    Updated: 2024/03/27 09:12:10 by beredzhe         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,7 @@ CFILES =	ft_atoi.c\
 			ft_calloc.c\
 			ft_count_c.c\
 			ft_count_lines.c\
+			ft_pos_find.c\
 			ft_line_length.c\
 			ft_strchr.c\
 			ft_strjoin.c\

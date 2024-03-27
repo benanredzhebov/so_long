@@ -6,7 +6,7 @@
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 10:11:27 by beredzhe          #+#    #+#             */
-/*   Updated: 2024/03/24 16:33:57 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/03/27 08:45:47 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,21 +57,67 @@ void	ft_create_map(t_data *data)
 	}
 }
 
-int	ft_check_coin(char **map, int width, int height, int x, int y)
+int	check_path(t_data *data, int **marked)
 {
-	int	c;
+	int	row;
+	int	col;
+	int	exit;
+	int	coins;
 
-	c = 0;
-	if (y < 0 || y >= height || x < 0 || x >= width)
-		return (0);
-	if (map[y][x] == 'C')
-		c++;
-	if (map[y][x] == 'v' || map[y][x] == '1')
-		return (0);
-	map[y][x] = 'v';
-	c += ft_check_coin(map, width, height, x, y + 1);
-	c += ft_check_coin(map, width, height, x, y - 1);
-	c += ft_check_coin(map, width, height, x - 1, y);
-	c += ft_check_coin(map, width, height, x + 1, y);
-	return (c);
+	row = -1;
+	exit = 0;
+	coins = 0;
+	while (data->map->map[++row])
+	{
+		col = -1;
+		while (data->map->map[row][++col])
+		{
+			if ((data->map->map[row][col] == 'E') && (marked[row][col]))
+				exit++;
+			if ((data->map->map[row][col] == 'C') && (marked[row][col]))
+				coins++;
+		}
+	}
+	if ((coins + exit) == data->map->coins + 1)
+		return (1);
+	return (0);
+}
+
+void	ft_check_coin(t_data *data, int row, int col, int **marked)
+{
+	if ((row < 0 || row >= data->rows) && (col < 0 || col >= data->cols))
+		return ;
+	if (data->map->map[row][col] != '1' && marked[row][col] != 1)
+	{
+		marked[row][col] = 1;
+		ft_check_coin(data, row, col + 1, marked);
+		ft_check_coin(data, row, col - 1, marked);
+		ft_check_coin(data, row + 1, col, marked);
+		ft_check_coin(data, row - 1, col, marked);
+	}
+}
+
+void	can_access_coins(t_data *data)
+{
+	int	**marked;
+	int	valid;
+	int	i;
+
+	i = 0;
+	valid = 1;
+	data->rows = data->size_y / IMG_H;
+	data->cols = data->size_x / IMG_W;
+	marked = ft_calloc(data->rows, sizeof(int *));
+	while (i < data->rows)
+	{
+		marked[i] = (int *)ft_calloc(data->cols, sizeof(int));
+		i++;
+	}
+	ft_check_coin(data, data->pos[0], data->pos[1], marked);
+	valid = check_path(data, marked);
+	while (--i >= 0)
+		free(marked[i]);
+	free(marked);
+	if (!valid)
+		ft_map_error("Error: some collectibles can't be reached\n");
 }

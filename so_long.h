@@ -6,7 +6,7 @@
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 10:09:11 by beredzhe          #+#    #+#             */
-/*   Updated: 2024/03/24 16:22:54 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/03/27 09:24:46 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,9 @@ typedef struct s_data
 	int		size_y;
 	int		p_x;
 	int		p_y;
+	int		pos[2];
+	int		rows;
+	int		cols;
 	int		counter;
 	int		collected;
 	t_map	*map;
@@ -82,6 +85,8 @@ int		ft_mouse_hook(int mousecode, t_data *data);
 void	ft_move(t_data *data, char position, int direction);
 int		ft_exit(t_data *data);
 void	ft_init(t_data *data, t_map *map);
-int		ft_check_coin(char **map, int width, int height, int x, int y);
+void	ft_map_error(char *error_msg);
+void	can_access_coins(t_data *data);
+int		ft_p_position(t_data *data, char *s, int row);
 
 #endif
