@@ -6,7 +6,7 @@
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 10:11:27 by beredzhe          #+#    #+#             */
-/*   Updated: 2024/03/27 08:45:47 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/03/27 12:57:15 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	ft_window_size(t_data *data, char **argv)
 	}
 	if (ft_strnstr(argv[1], ".ber", ft_strlen(argv[1])) == NULL)
 	{
-		ft_printf("Error\nmap has to be .ber\n");
+		ft_printf("Error: The map must be in the .ber format.\n");
 		exit(EXIT_FAILURE);
 	}
 	data->size_x = (ft_line_length(fd) * IMG_W);
@@ -119,5 +119,5 @@ void	can_access_coins(t_data *data)
 		free(marked[i]);
 	free(marked);
 	if (!valid)
-		ft_map_error("Error: some collectibles can't be reached\n");
+		ft_map_error("Error: Some collectibles are unreachable.\n");
 }

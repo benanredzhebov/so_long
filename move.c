@@ -6,7 +6,7 @@
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 10:11:19 by beredzhe          #+#    #+#             */
-/*   Updated: 2024/03/27 10:28:28 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/03/27 12:49:00 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	ft_move_help(t_data *data, char pos, int dir)
 		&& (data->map->map[data->p_y][data->p_x + 1 * dir] != 'E'
 		|| data->collected == data->map->coins))
 		data->p_x = data->p_x + 1 * dir;
-	else if (pos == 'y' && data->map->map[data->p_y + 1 * dir][data->p_x] == 'E' 
+	else if (pos == 'y' && data->map->map[data->p_y + 1 * dir][data->p_x] == 'E'
 		&& data->collected != data->map->coins)
 		ft_printf("Collect all coins before leaving\n");
 	else if (pos == 'x' && data->map->map[data->p_y][data->p_x + 1 * dir] == 'E'
@@ -76,7 +76,8 @@ void	ft_move(t_data *data, char pos, int dir)
 		(data->p_x * IMG_W), (data->p_y * IMG_H));
 	if ((pos == 'y' && data->map->map[data->p_y + 1 * dir][data->p_x] == '1') ||
 		(pos == 'x' && data->map->map[data->p_y][data->p_x + 1 * dir] == '1') ||
-		(pos == 'y' && data->map->map[data->p_y + 1 * dir][data->p_x] == 'E') ||
+		(pos == 'y' && data->map->map[data->p_y + 1 * dir][data->p_x] == 'E' &&
+		data->collected != data->map->coins) ||
 		(pos == 'x' && data->map->map[data->p_y][data->p_x + 1 * dir] == 'E' &&
 		data->collected != data->map->coins))
 	{

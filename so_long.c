@@ -6,7 +6,7 @@
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 10:09:35 by beredzhe          #+#    #+#             */
-/*   Updated: 2024/03/27 09:31:30 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/03/27 12:59:34 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,20 +42,20 @@ int	main(int argc, char **argv)
 	map.map = ft_calloc(data.size_y + 1, sizeof(char *));
 	if (!map.map)
 	{
-		perror("Error\ncalloc failed\n");
+		perror("Error: Calloc failed\n");
 		exit(EXIT_FAILURE);
 	}
 	ft_init(&data, &map);
 	ft_parse_input(&data, argv, argc);
 	if (!data.mlx)
 	{
-		perror("Error\nprogramm init failed\n");
+		perror("Error: Programm init failed\n");
 		exit(EXIT_FAILURE);
 	}
 	data.win = mlx_new_window(data.mlx, data.size_x,
 			data.size_y, "./so_long");
 	ft_render_next_frame(&data);
 	mlx_loop(data.mlx);
-	perror("Error\nloop failed\n");
+	perror("Error: Loop failed\n");
 	exit(EXIT_FAILURE);
 }

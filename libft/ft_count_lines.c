@@ -6,7 +6,7 @@
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/23 10:09:30 by beredzhe          #+#    #+#             */
-/*   Updated: 2024/03/23 11:23:13 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/03/27 12:35:25 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	exit_error(void)
 {
-	printf("Error\nwrong map dimensions\n");
+	ft_printf("Error\nwrong map dimensions\n");
 	exit(EXIT_FAILURE);
 }
 

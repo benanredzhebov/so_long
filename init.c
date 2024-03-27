@@ -6,7 +6,7 @@
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 10:11:52 by beredzhe          #+#    #+#             */
-/*   Updated: 2024/03/26 18:39:15 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/03/27 12:54:42 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	ft_init(t_data *data, t_map *map)
 	img = malloc(sizeof(t_img));
 	if (!img)
 	{
-		perror("Error\nmalloc failed\n");
+		perror("Error: Malloc failed\n");
 		exit(EXIT_FAILURE);
 	}
 	data->img = img;
