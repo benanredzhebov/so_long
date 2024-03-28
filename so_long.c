@@ -6,7 +6,7 @@
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 10:09:35 by beredzhe          #+#    #+#             */
-/*   Updated: 2024/03/27 12:59:34 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/03/27 15:24:37 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,11 @@ int	main(int argc, char **argv)
 
 	ft_window_size(&data, argv);
 	data.mlx = mlx_init();
+	if (!data.mlx)
+	{
+		perror("Error: Programm init failed\n");
+		exit(EXIT_FAILURE);
+	}
 	map.map = ft_calloc(data.size_y + 1, sizeof(char *));
 	if (!map.map)
 	{
@@ -47,11 +52,6 @@ int	main(int argc, char **argv)
 	}
 	ft_init(&data, &map);
 	ft_parse_input(&data, argv, argc);
-	if (!data.mlx)
-	{
-		perror("Error: Programm init failed\n");
-		exit(EXIT_FAILURE);
-	}
 	data.win = mlx_new_window(data.mlx, data.size_x,
 			data.size_y, "./so_long");
 	ft_render_next_frame(&data);
