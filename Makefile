@@ -6,7 +6,7 @@
 #    By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/17 10:11:36 by beredzhe          #+#    #+#              #
-#    Updated: 2024/03/28 09:06:37 by beredzhe         ###   ########.fr        #
+#    Updated: 2024/03/27 09:13:59 by beredzhe         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,10 +20,6 @@ MLX_PATH = mlx/
 
 MLX_LIB = $(MLX_PATH)libmlx.a
 
-/*-Lmlx: This flag tells the linker to look for libraries in the directory "mlx".
--lmlx: This flag tells the linker to link against the library named "mlx".
--framework OpenGL: This flag tells the linker to link against the OpenGL framework.
--framework AppKit: This flag tells the linker to link against the AppKit framework.*/
 MLX_FLAGS = -Lmlx -lmlx -framework OpenGL -framework AppKit
 
 LIBFT_PATH = libft/

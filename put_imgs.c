@@ -6,7 +6,7 @@
 /*   By: beredzhe <beredzhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 10:11:02 by beredzhe          #+#    #+#             */
-/*   Updated: 2024/03/28 09:30:37 by beredzhe         ###   ########.fr       */
+/*   Updated: 2024/03/27 09:23:50 by beredzhe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	ft_put_player(t_data *data)
 }
 
 int	ft_p_position(t_data *data, char *s, int row)
-/* searching for the position of the charachter P */
+/* will count appearances of c inside s and return them as integer */
 {
 	int	col;
 	int	x;
